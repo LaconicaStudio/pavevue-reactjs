@@ -14,6 +14,8 @@ If you are developing a production application, we recommend using TypeScript wi
 
 use:
 npm 10.2.4
-node v20.12.2
+node v20.19.0
+
+nvm use v20.19.0
 
 npm run dev
