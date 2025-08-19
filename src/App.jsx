@@ -1,16 +1,21 @@
 import {AppRoutes} from "./modules/@akdash/AppRoutes";
 import {Header} from "./modules/@akdash/Header";
-import './App.css'
 
 function App() {
 
   return (
     <>
-        <div className="p-4 max-w-3xl mx-auto">
-            <Header/>
+        <div className="w-full min-h-screen flex flex-col">
+            <div>
+                <Header/>
+            </div>
+
+            <div className="main-page flex-1 flex">
+                <AppRoutes />
+            </div>
+
         </div>
 
-        <AppRoutes />
     </>
   )
 }
