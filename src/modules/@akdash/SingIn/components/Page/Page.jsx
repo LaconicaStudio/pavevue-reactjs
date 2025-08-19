@@ -1,6 +1,8 @@
 import React from "react";
-import Form from "../Form";
+
 import {Link} from "react-router-dom";
+import SingInForm from "../Form";
+
 
 const Page = () => {
     return (
@@ -12,8 +14,8 @@ const Page = () => {
                 <div></div>
                 <div className="text-left max-w-[600px]">
                     <div>
-                        <h1 className="text-2xl mb-4 font-sans-semiBold lg:text-[44px] lg:leading-[54px] text-white">Let’s sign you in!</h1>
-                        <Form/>
+                        <h1 className="text-2xl mb-4 font-sans-semiBold lg:text-[44px] lg:leading-[54px] text-white lg:mb-7">Let’s sign you in!</h1>
+                        <SingInForm/>
                     </div>
                     <div>
                         <h2 className="text-gold font-sans-semiBold text-lg lg:text-[34px] lg:leading-[54px] mb-2.5">

@@ -1,0 +1,55 @@
+.input,
+.input_error {
+    appearance: none;
+    background: #000000;
+    height: 65px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px 25px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid #AD9041;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.input:focus-visible,
+.input_error:focus-visible {
+    outline: none;
+}
+
+.input_error {
+    border: 1px solid #CB0203;
+}
+
+.input_error + small {
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    color: #CB0203;
+}
+
+input::placeholder {
+    color: #ffffff;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ffffff;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+    color: #ffffff;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+    color: #ffffff;
+}
+input:-moz-placeholder { /* Firefox 18- */
+    color: #ffffff;
+}
+
+input{
+    /*-webkit-box-shadow: inset 0 0 0 50px #fff;*/
+    -webkit-box-shadow: inset 0 0 0 50px transparent;
+    -webkit-text-fill-color: #ffffff;
+}
+

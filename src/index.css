@@ -39,14 +39,7 @@
 
 @theme {
     --color-gold: #AD9041;
-
-
-    --color-brand-light: #7dd3fc;
-    --color-brand-dark: #0369a1;
-
-    --color-custom-gray: #1a1a1a;
-    --color-accent: #ff5733;
-
+    --color-green: #41ad6b;
 
     --font-sans: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-bold: "Source Sans Pro Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;

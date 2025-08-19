@@ -1,0 +1,41 @@
+.root {
+    display: grid;
+    height: 60px;
+    grid-template-areas: 'before input after';
+    grid-template-columns: auto 1fr auto;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    grid-column: before-start / after-end;
+    grid-row: input-start / input-end;
+}
+
+.before {
+    grid-area: before;
+}
+
+.after {
+    grid-area: after;
+}
+
+.input > input {
+    padding-left: calc(1.875rem * var(--iconsBefore) + 26px);
+    padding-right: calc(1.875rem * var(--iconsAfter) + 26px);
+}
+
+.before,
+.after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 18px;
+    height: 65px;
+    z-index: 1;
+}
+
+.before:empty,
+.after:empty {
+    display: none;
+}
