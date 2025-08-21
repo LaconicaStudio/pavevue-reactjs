@@ -1,20 +1,11 @@
 import React from 'react';
 // import { bool, node, shape, string } from 'prop-types';
-import classes from './field.module.css';
 
 const Field = props => {
-    const { children, id, label, optional } = props;
-
-    // const optionalSymbol = optional ? (
-    //     <span className={classes.optional}>Optional</span>
-    // ) : null;
+    const { children } = props;
 
     return (
-        <div className={classes.root}>
-            {/*<label className={classes.label} htmlFor={id}>*/}
-            {/*    {label}*/}
-            {/*    {optionalSymbol}*/}
-            {/*</label>*/}
+        <div>
             {children}
         </div>
     );

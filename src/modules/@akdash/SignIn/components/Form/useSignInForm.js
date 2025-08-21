@@ -1,9 +1,12 @@
 import {useState} from "react";
+import {usePVContext} from "../../../context/PVContext";
 
 export const useSignInForm = props => {
+    const {setIsLoggedIn} = usePVContext();
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
 
     const handleSubmit = async () => {
         // const url = `test`;
@@ -31,6 +34,7 @@ export const useSignInForm = props => {
         //
         //     if (result.status === "success") {
         //         console.log("Login success");
+        // setIsLoggedIn();
         //     } else  {
         //         console.log("Login failed: ", result.message);
         //     }
