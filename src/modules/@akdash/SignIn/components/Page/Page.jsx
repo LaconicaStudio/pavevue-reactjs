@@ -1,7 +1,7 @@
 import React from "react";
 
 import {Link} from "react-router-dom";
-import SingInForm from "../Form";
+import SignInForm from "../Form";
 
 
 const Page = () => {
@@ -15,10 +15,10 @@ const Page = () => {
                 <div className="text-left max-w-[600px]">
                     <div>
                         <h1 className="text-2xl mb-4 font-sans-semiBold lg:text-[44px] lg:leading-[54px] text-white lg:mb-7">Let’s sign you in!</h1>
-                        <SingInForm/>
+                        <SignInForm/>
                     </div>
-                    <div>
-                        <h2 className="text-gold font-sans-semiBold text-lg lg:text-[34px] lg:leading-[54px] mb-2.5">
+                    <div className="pt-9">
+                        <h2 className="text-gold font-sans-semiBold text-lg lg:text-[34px] lg:leading-[54px] mb-1.5">
                             Don’t have an account?
                         </h2>
                         <p className="text-white font-sans-semiBold text-base lg:text-[21px] lg:leading-7  mb-2.5">

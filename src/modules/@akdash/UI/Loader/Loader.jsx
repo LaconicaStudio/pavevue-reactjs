@@ -1,28 +1,15 @@
 import React from 'react';
-// import {ThreeDots} from "react-loader-spinner";
-import classes from './loader.module.css'
+import {BeatLoader} from "react-spinners";
 
 const Loader = props => {
-    const {isActive, height, width, color} = props;
+    const {isActive, color} = props;
 
-    return (
-        <div>Loader</div>
+    return (isActive &&
+            <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#00000070]">
+                <BeatLoader color={color} loading={isActive} />
+            </div>
+
     )
-
-    // return (isActive &&
-        // <div className={classes.loader}>
-        //     <ThreeDots
-        //         visible={true}
-        //         height={height}
-        //         width={width}
-        //         color={color}
-        //         radius="9"
-        //         ariaLabel="three-dots-loading"
-        //         wrapperStyle={{}}
-        //         wrapperClass=""
-        //     />
-        // </div>
-    // )
 };
 
 export default Loader;

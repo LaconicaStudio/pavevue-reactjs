@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const SingIn = () => {
     return (
-        <header className="flex justify-between items-center mb-6">
+        <header className="flex justify-between items-center mb-6 py-7 px-6">
             <div>
                 <img src="/images/logo.svg" alt="logo"/>
             </div>

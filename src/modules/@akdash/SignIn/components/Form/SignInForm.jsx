@@ -2,16 +2,26 @@ import React, {useState} from "react";
 import { Form, Input, Select, Checkbox, Relevant, Debug } from 'informed';
 import {Link} from "react-router-dom";
 import {Field, Loader, TextInput} from "../../../UI";
+import {useSignInForm} from "./useSignInForm.js";
 
 
-const SingInForm = () => {
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+const SignInForm = () => {
+
+
+    const {
+        email,
+        setEmail,
+        pass,
+        setPass,
+        handleSubmit,
+        isLoading
+    } = useSignInForm();
+
 
 return (
     <div>
         <Form className=""
-              // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
         >
             <div className="">
                 <Field>
@@ -48,14 +58,14 @@ return (
 
             <Link to="/" className="inline-block pt-1.5">Forgot your password?</Link>
 
-        {/*    <Loader*/}
-        {/*        // isActive={isLoading}*/}
-        {/*        height={60} width={60} color={'#AE9040'} />*/}
+            <Loader
+                isActive={isLoading}
+                color={'#AE9040'} />
 
             <div className="mt-5">
                 <button type="submit"
-                        className="bg-green text-2xl font-sans-bold"
-                        // disabled={isLoading}
+                        className="bg-green text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"
+                        disabled={isLoading}
                 >
                     <span>Sing In</span>
                 </button>
@@ -65,4 +75,4 @@ return (
 )
 }
 
-export default SingInForm;
+export default SignInForm;

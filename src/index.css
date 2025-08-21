@@ -40,6 +40,7 @@
 @theme {
     --color-gold: #AD9041;
     --color-green: #41ad6b;
+    --color-dark-gold: #837454;
 
     --font-sans: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-bold: "Source Sans Pro Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -72,7 +73,7 @@
 }
 
 a {
-    @apply  text-gold font-sans-semiBold underline text-base lg:text-xl;
+    @apply  text-gold font-sans-semiBold underline text-base lg:text-xl transition-all duration-300;
 }
 a:hover {
     @apply no-underline
