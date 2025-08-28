@@ -6,13 +6,10 @@ import {useSignInForm} from "./useSignInForm.js";
 
 
 const SignInForm = () => {
-
-
     const {
         handleSubmit,
         isLoading
     } = useSignInForm();
-
 
 return (
     <div>
@@ -40,12 +37,6 @@ return (
                 </Field>
             </div>
 
-        {/*    /!*{isFormError &&*!/*/}
-        {/*    /!*    <div className='errorMessage'>*!/*/}
-        {/*    /!*        <span>{message}</span>*!/*/}
-        {/*    /!*    </div>*!/*/}
-        {/*    /!*}*!/*/}
-
             <Link to="/" className="inline-block pt-1.5">Forgot your password?</Link>
 
             <Loader
@@ -62,7 +53,6 @@ return (
             </div>
         </Form>
     </div>
-)
-}
+)}
 
 export default SignInForm;

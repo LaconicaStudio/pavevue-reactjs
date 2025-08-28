@@ -16,10 +16,22 @@ export const PVContextProvider = ({children}) => {
         localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
     }, [isLoggedIn]);
 
+    const signIn = () => {
+        setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn", "true");
+    };
+
+    const signOut = () => {
+        setIsLoggedIn(false);
+        localStorage.removeItem("isLoggedIn");
+    };
+
     return (
         <PVContext.Provider value={{
             isLoggedIn,
-            setIsLoggedIn
+            setIsLoggedIn,
+            signIn,
+            signOut
         }}>
             {children}
         </PVContext.Provider>

@@ -1,14 +1,16 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
 
+
 export const useSignInForm = props => {
-    const {setIsLoggedIn} = usePVContext();
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const {signIn} = usePVContext();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
 
     const handleSubmit = async ({ values, errors }) => {
+
         // const url = `test`;
 
         if (errors && Object.keys(errors).length) return;
@@ -18,7 +20,11 @@ export const useSignInForm = props => {
             password: values.password || ""
         };
 
-        setIsLoggedIn(true);
+        if (payload.email && payload.password) {
+            signIn();
+            // navigate("/dashboard");
+            navigate("/welcome");
+        }
 
         // try {
         //     setIsLoading(true)
@@ -51,10 +57,6 @@ export const useSignInForm = props => {
         console.log("Form submitted:", payload);
     }
     return {
-        email,
-        setEmail,
-        pass,
-        setPass,
         isLoading,
         handleSubmit
     }
