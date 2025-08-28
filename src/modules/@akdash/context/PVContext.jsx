@@ -7,8 +7,14 @@ export const usePVContext = () => {
 };
 
 export const PVContextProvider = ({children}) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        const saved = localStorage.getItem("isLoggedIn");
+        return saved ? JSON.parse(saved) : false;
+    });
 
+    useEffect(() => {
+        localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+    }, [isLoggedIn]);
 
     return (
         <PVContext.Provider value={{

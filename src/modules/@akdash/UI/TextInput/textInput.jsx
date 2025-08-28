@@ -1,39 +1,62 @@
-import React, { Fragment } from 'react';
-// import { node, shape, string } from 'prop-types';
-// import useFieldState from './useInformedFieldStateWrapper';
+import { useField } from "informed";
+import classes from "./textInput.module.css";
 
-import classes from './textInput.module.css';
+export default function TextInput({
+  field,
+  required,
+  type = "text",
+  validate,
+  classes: propClasses,
+  ...rest
+}) {
+  const {
+    fieldApi,         // setValue, setTouched, etc.
+    fieldState,       // value, error, touched
+    ref,
+    userProps
+  } = useField({
+    field,
+    validate: (val) => {
+      // required
+      if (required && (val == null || String(val).trim() === "")) {
+        return "This field is required";
+      }
 
-const TextInput = props => {
-    const {
-        classes: propClasses,
-        field,
-        message,
-        value,
-        ...rest
-    } = props;
-    // const fieldState = useFieldState(field);
-    // const inputClass = fieldState.error ? classes.input_error : classes.input;
+      // email validation
+      if (type === "email" && val) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(val)) {
+          return "Please enter a valid email address";
+        }
+      }
 
-    return (
-        <Fragment>
-                <input className={`${propClasses?.input || ""} ${classes.input || ""}`}
-                       value={value ?? ""}
-                       onChange={(e) => onChange?.(e.target.value)}
-                       {...rest}
-                />
-        </Fragment>
-    );
-};
+      if (validate) return validate(val);
+    },
+  });
 
-export default TextInput;
+  const className = [
+    propClasses?.input,
+    fieldState.error && fieldState.touched ? classes.input_error : classes.input,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-// TextInput.propTypes = {
-//     after: node,
-//     before: node,
-//     classes: shape({
-//         input: string
-//     }),
-//     field: string.isRequired,
-//     message: node
-// };
+  return (
+    <div className="relative">
+      <input
+        ref={ref}
+        {...userProps}
+        type={type}
+        value={fieldState.value ?? ""}
+        onChange={(e) => fieldApi.setValue(e.target.value)}
+        onBlur={() => fieldApi.setTouched(true)}
+        aria-invalid={!!(fieldState.error && fieldState.touched)}
+        className={className}
+        {...rest}
+      />
+      {fieldState.touched && fieldState.error && (
+        <small>{fieldState.error}</small>
+      )}
+    </div>
+  );
+}

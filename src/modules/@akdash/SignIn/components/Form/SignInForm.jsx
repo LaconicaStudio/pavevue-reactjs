@@ -9,10 +9,6 @@ const SignInForm = () => {
 
 
     const {
-        email,
-        setEmail,
-        pass,
-        setPass,
         handleSubmit,
         isLoading
     } = useSignInForm();
@@ -27,12 +23,9 @@ return (
                 <Field>
                     <TextInput
                         field="email"
-                        type="text"
-                        autoComplete="off"
-                        placeholder={'Enter Email Address'}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        classes={{ input:'text-white' }}
+                        type="email"
+                        placeholder="Enter Email Address"
+                        required
                     />
                 </Field>
             </div>
@@ -41,11 +34,8 @@ return (
                     <TextInput
                         field="password"
                         type="password"
-                        autoComplete="off"
-                        placeholder={'Enter Password'}
-                        value={pass}
-                        onChange={(e) => setPass(e.target.value)}
-                        classes={{ input:'text-white' }}
+                        placeholder="Enter Password"
+                        required
                     />
                 </Field>
             </div>

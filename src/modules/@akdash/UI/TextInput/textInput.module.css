@@ -25,31 +25,39 @@
 
 .input_error + small {
     position: absolute;
-    left: 0;
-    bottom: 2px;
+    right: 11px;
+    bottom: 10px;
     color: #CB0203;
 }
 
 input::placeholder {
-    color: #ffffff;
+    color: #F7F7F7;
 }
 
 input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #ffffff;
+    color: #F7F7F7;
 }
 input::-moz-placeholder { /* Firefox 19+ */
-    color: #ffffff;
+    color: #F7F7F7;
 }
 input:-ms-input-placeholder { /* IE 10+ */
-    color: #ffffff;
+    color: #F7F7F7;
 }
 input:-moz-placeholder { /* Firefox 18- */
-    color: #ffffff;
+    color: #F7F7F7;
 }
 
 input{
-    /*-webkit-box-shadow: inset 0 0 0 50px #fff;*/
+
     -webkit-box-shadow: inset 0 0 0 50px transparent;
-    -webkit-text-fill-color: #ffffff;
+    -webkit-text-fill-color: #F7F7F7;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #000 inset !important;
+    -webkit-text-fill-color: #F7F7F7 !important;
+    border: 1px solid #AD9041;
+}

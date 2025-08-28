@@ -8,14 +8,17 @@ export const useSignInForm = props => {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    const handleSubmit = async () => {
+    const handleSubmit = async ({ values, errors }) => {
         // const url = `test`;
 
+        if (errors && Object.keys(errors).length) return;
 
         const payload = {
-            email,
-            password: pass
+            email: values.email || "",
+            password: values.password || ""
         };
+
+        setIsLoggedIn(true);
 
         // try {
         //     setIsLoading(true)
