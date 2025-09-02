@@ -1,51 +1,55 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {redirect, useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
 
 
 export const useSignInForm = props => {
-    const {signIn} = usePVContext();
+    const {signInWithToken} = usePVContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
 
     const handleSubmit = async ({ values, errors }) => {
 
-        const url = 'http://localhost:3001/login';
+        const loginUrl = 'http://localhost:3001/login';
+        const userUrl = 'http://localhost:3001/user';
 
         if (errors && Object.keys(errors).length) return;
 
         const payload = {
-            email: values.email || "",
+            email: values.email?.trim() || "",
             password: values.password || ""
         };
 
-        if (payload.email && payload.password) {
-            signIn();
-            navigate("/welcome");
+        if (!payload.email || !payload.password) {
+            console.warn("Email and password are required");
+            return;
         }
 
         try {
             setIsLoading(true)
-            const response = await fetch(url, {
-                method: 'POST',
+
+            // login
+            const response = await fetch(loginUrl, {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify(payload),
             });
 
-            setIsLoading(false);
+            const data = await response.json();
 
-            const result = await response.json();
-            console.log(result.status);
-
-            if (result.status === "success") {
-                signIn();
-                navigate("/welcome");
-            } else  {
-                console.log("Login failed: ", result.message);
+            if (!response.ok || data.status !== "success") {
+                console.error("Login failed:", data.message || "Unknown error");
+                return;
             }
+
+            // get user
+            await signInWithToken(data.token);
+
+            // redirect
+            navigate("/welcome", { replace: true });
 
         } catch (error) {
             console.error('Error while submitting:', error);
