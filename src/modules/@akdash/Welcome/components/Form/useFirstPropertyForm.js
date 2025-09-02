@@ -4,7 +4,7 @@ import {usePVContext} from "../../../context/PVContext";
 
 
 export const useFirstPropertyForm = props => {
-    const {signIn} = usePVContext();
+    const {} = usePVContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +23,8 @@ export const useFirstPropertyForm = props => {
 
 
         console.log(payload);
+
+        navigate("/dashboard", { replace: true });
 
         // try {
         //     setIsLoading(true)

@@ -8,10 +8,10 @@ import {useSignInForm} from "./useSignInForm.js";
 const SignInForm = () => {
     const {
         handleSubmit,
-        isLoading
+        loading
     } = useSignInForm();
 
-return (
+    return (
     <div>
         <Form className=""
               onSubmit={handleSubmit}
@@ -40,13 +40,13 @@ return (
             <Link to="/" className="inline-block pt-1.5">Forgot your password?</Link>
 
             <Loader
-                isActive={isLoading}
+                isActive={loading}
                 color={'#AE9040'} />
 
             <div className="mt-5">
                 <button type="submit"
                         className="bg-green text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"
-                        disabled={isLoading}
+                        disabled={loading}
                 >
                     <span>Sing In</span>
                 </button>

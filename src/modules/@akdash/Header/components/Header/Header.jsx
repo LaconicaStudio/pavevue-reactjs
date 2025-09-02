@@ -28,7 +28,7 @@ const Header = () => {
                 <img src="/images/logo.svg" alt="logo" width="180" height="41"/>
             </div>
             {isLoggedIn && (
-                <div className="flex items-center">
+                <div className="flex items-center gap-6">
                     <UserImage/>
                     <div className="w-8 h-5">
                         <button

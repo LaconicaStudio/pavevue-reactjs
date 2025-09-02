@@ -72,7 +72,7 @@ export const PVContextProvider = ({children}) => {
         };
 
         init();
-        
+
         return () => {
             cancelled = true;
         };
@@ -83,6 +83,7 @@ export const PVContextProvider = ({children}) => {
             user,
             isLoggedIn,
             loading,
+            setLoading,
             signInWithToken,
             refreshUser,
             getToken,
