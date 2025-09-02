@@ -21,6 +21,9 @@ export const useSignInForm = props => {
         };
 
         if (payload.email && payload.password) {
+            alert(payload.email +'--'+ payload.password);
+            return false;
+            
             signIn();
             // navigate("/dashboard");
             navigate("/welcome");
