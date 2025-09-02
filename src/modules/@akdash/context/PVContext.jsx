@@ -1,95 +1,95 @@
-import React, {createContext, useContext, useState, useEffect, useRef} from 'react';
+// src/context/PVContext.jsx
+import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 
 const TOKEN_KEY = "token";
+const API = "http://localhost:3001";
 
-const PVContext = createContext();
-
-export const usePVContext = () => {
-    return useContext(PVContext);
-};
+const PVContext = createContext(null);
+export const usePVContext = () => useContext(PVContext);
 
 export const PVContextProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isLoggedIn, setIsLoggedIn] = useState(!!user);
-
+    const isLoggedIn = !!user; // похідний стан
 
     const getToken = () => localStorage.getItem(TOKEN_KEY) || "";
-    const saveToken = (token) => localStorage.setItem(TOKEN_KEY, token);
+    const saveToken = (t) => localStorage.setItem(TOKEN_KEY, t);
     const clearToken = () => localStorage.removeItem(TOKEN_KEY);
 
     const fetchUser = async () => {
         const token = getToken();
         if (!token) return null;
 
-        const res = await fetch(`http://localhost:3001/user`, {
-            headers: { Authorization: `Bearer ${token}` },
+        const res = await fetch(`${API}/user`, {
+            headers: {Authorization: `Bearer ${token}`},
         });
 
         if (!res.ok) throw new Error("Failed to fetch user");
-        return await res.json();
+        return res.json();
     };
 
     const signInWithToken = async (token) => {
         saveToken(token);
         const user = await fetchUser();
         setUser(user);
-        setIsLoggedIn(true)
     };
 
     const refreshUser = async () => {
         const user = await fetchUser();
         setUser(user);
-        setIsLoggedIn(false);
         return user;
     };
 
     const signOut = () => {
         clearToken();
         setUser(null);
-        setIsLoggedIn(false);
     };
 
     // get user data
-    const didInit = useRef(false);
-
     useEffect(() => {
-        if (didInit.current) return;
-        didInit.current = true;
-        let alive = true;
+        let cancelled = false;
 
-        (async () => {
+        const init = async () => {
+            const token = getToken();
+
+            if (!token) {
+                setLoading(false);
+                return;
+            }
+
             try {
-                const token = getToken();
-                if (!token) return;
                 const user = await fetchUser();
-                if (alive) setUser(user);
+
+                if (!cancelled) setUser(user);
+
             } catch (e) {
                 clearToken();
-                if (alive) setUser(null);
+
+                if (!cancelled) setUser(null);
             } finally {
-                if (alive) setLoading(false);
+                if (!cancelled) setLoading(false);
             }
-        })();
-        return () => { alive = false };
-    }, [user]);
+        };
 
-
-    useEffect(() => {
-        if (!getToken()) setLoading(false);
+        init();
+        
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
-    return (
-        <PVContext.Provider value={{
+    const value = useMemo(
+        () => ({
             user,
             isLoggedIn,
             loading,
             signInWithToken,
             refreshUser,
             getToken,
-            signOut
-        }}>
-            {children}
-        </PVContext.Provider>
+            signOut,
+        }),
+        [user, isLoggedIn, loading]
     );
+
+    return <PVContext.Provider value={value}>{children}</PVContext.Provider>;
 };

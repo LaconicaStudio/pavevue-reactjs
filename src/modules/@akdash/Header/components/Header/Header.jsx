@@ -2,6 +2,7 @@ import React from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext.jsx";
 import {useHeader} from "./useHeader.js";
+import {UserImage} from "../../../User";
 
 
 const Header = () => {
@@ -24,11 +25,11 @@ const Header = () => {
     return (
         <header className={`flex justify-between items-center mb-6 py-7 px-6 ${isLoggedIn ? "bg-black" : ""}`}>
             <div>
-                <img src="/images/logo.svg" alt="logo"/>
+                <img src="/images/logo.svg" alt="logo" width="180" height="41"/>
             </div>
             {isLoggedIn && (
-                <div>
-                    {/*<UserImage/>*/}
+                <div className="flex items-center">
+                    <UserImage/>
                     <div className="w-8 h-5">
                         <button
                             type="button"
