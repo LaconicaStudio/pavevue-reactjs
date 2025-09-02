@@ -8,7 +8,8 @@ import {useSignInForm} from "./useSignInForm.js";
 const SignInForm = () => {
     const {
         handleSubmit,
-        isLoading
+        isLoading,
+        handleGetData
     } = useSignInForm();
 
 return (
@@ -49,6 +50,12 @@ return (
                         disabled={isLoading}
                 >
                     <span>Sing In</span>
+                </button>
+
+                <button type="button" onClick={handleGetData}
+                        className="bg-green text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"
+                >
+                    <span>Test</span>
                 </button>
             </div>
         </Form>

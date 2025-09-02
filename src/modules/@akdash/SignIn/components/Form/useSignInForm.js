@@ -21,9 +21,31 @@ export const useSignInForm = props => {
         };
 
         if (payload.email && payload.password) {
-            alert(payload.email +'--'+ payload.password);
-            return false;
-            
+            let email = payload.email;
+            let password = payload.password;
+            try {
+                const res = await fetch("https://pavevue.loc/api/users/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password }),
+                    credentials: "include",
+                });
+    
+                const data = await res.json();
+alert(JSON.stringify(data));
+                if (!res.ok) {
+                    setError(data.error || "Error");
+                } else {
+                    alert("Success");
+                    //window.location.href = "/profile";
+                }
+            } catch (err) {
+                alert(err);
+                setError("Connection error");
+            } finally {
+                setLoading(false);
+            }
+
             signIn();
             // navigate("/dashboard");
             navigate("/welcome");
@@ -59,8 +81,37 @@ export const useSignInForm = props => {
 
         console.log("Form submitted:", payload);
     }
+    
+    const handleGetData = async ({ values, errors }) => {
+        try {
+            const res = await fetch("https://pavevue.loc/api/users/test", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+            });
+
+            const data = await res.json();
+
+alert(JSON.stringify(data));
+
+            if (!res.ok) {
+                setError(data.error || "Error");
+            } else {
+                alert("Success");
+                //window.location.href = "/profile";
+            }
+        } catch (err) {
+            alert(err);
+            setError("Connection error");
+        } finally {
+            //setLoading(false);
+        }
+   
+    }
+ 
     return {
         isLoading,
-        handleSubmit
+        handleSubmit,
+        handleGetData
     }
 }
