@@ -11,7 +11,7 @@ export const useSignInForm = props => {
 
     const handleSubmit = async ({ values, errors }) => {
 
-        // const url = `test`;
+        const url = 'http://localhost:3001/login';
 
         if (errors && Object.keys(errors).length) return;
 
@@ -22,39 +22,36 @@ export const useSignInForm = props => {
 
         if (payload.email && payload.password) {
             signIn();
-            // navigate("/dashboard");
             navigate("/welcome");
         }
 
-        // try {
-        //     setIsLoading(true)
-        //     const response = await fetch(url, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify(payload),
-        //     });
-        //
-        //     setIsLoading(false);
-        //
-        //     const result = await response.json();
-        //     console.log(result.status);
-        //
-        //     if (result.status === "success") {
-        //         console.log("Login success");
-        // setIsLoggedIn();
-        //     } else  {
-        //         console.log("Login failed: ", result.message);
-        //     }
-        //
-        // } catch (error) {
-        //     console.error('Error while submitting:', error);
-        // } finally {
-        //     setIsLoading(false);
-        // }
+        try {
+            setIsLoading(true)
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
 
-        console.log("Form submitted:", payload);
+            setIsLoading(false);
+
+            const result = await response.json();
+            console.log(result.status);
+
+            if (result.status === "success") {
+                signIn();
+                navigate("/welcome");
+            } else  {
+                console.log("Login failed: ", result.message);
+            }
+
+        } catch (error) {
+            console.error('Error while submitting:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }
     return {
         isLoading,

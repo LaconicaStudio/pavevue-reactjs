@@ -12,6 +12,7 @@
     border: 1px solid #AD9041;
     text-overflow: ellipsis;
     overflow: hidden;
+    color: white !important;
 }
 
 .input:focus-visible,

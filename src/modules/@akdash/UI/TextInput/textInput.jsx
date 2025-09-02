@@ -1,9 +1,11 @@
 import { useField } from "informed";
 import classes from "./textInput.module.css";
+import {useState} from "react";
 
 export default function TextInput({
   field,
   required,
+  label,
   type = "text",
   validate,
   classes: propClasses,
@@ -34,6 +36,10 @@ export default function TextInput({
     },
   });
 
+  const [focused, setFocused] = useState(false);
+  const empty = !fieldState.value || String(fieldState.value).trim() === "";
+  const showLabel = empty && !focused;
+
   const className = [
     propClasses?.input,
     fieldState.error && fieldState.touched ? classes.input_error : classes.input,
@@ -43,6 +49,16 @@ export default function TextInput({
 
   return (
     <div className="relative">
+      {label && (
+          <label
+              className={[
+                  "pointer-events-none absolute left-[25px] top-[18px] text-[20px] text-white transition-opacity duration-150",
+                  showLabel ? "opacity-100" : "opacity-0"
+              ].join(" ")}
+          >
+              {label} {required && <span className="text-gold">*</span>}
+          </label>
+      )}
       <input
         ref={ref}
         {...userProps}
@@ -50,6 +66,7 @@ export default function TextInput({
         value={fieldState.value ?? ""}
         onChange={(e) => fieldApi.setValue(e.target.value)}
         onBlur={() => fieldApi.setTouched(true)}
+        onFocus={() => setFocused(true)}
         aria-invalid={!!(fieldState.error && fieldState.touched)}
         className={className}
         {...rest}
