@@ -1,6 +1,4 @@
 import React from "react";
-import SignInForm from "../../../SignIn/components/Form/index.js";
-import {Link} from "react-router-dom";
 
 const StepOne = props => {
     const {setIsStartSetup} = props;

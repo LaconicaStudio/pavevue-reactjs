@@ -46,10 +46,6 @@ return (
                 </Field>
             </div>
 
-            <Loader
-                isActive={isLoading}
-                color={'#AE9040'} />
-
             <div className="mt-5">
                 <button type="submit"
                         className="bg-gold text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"

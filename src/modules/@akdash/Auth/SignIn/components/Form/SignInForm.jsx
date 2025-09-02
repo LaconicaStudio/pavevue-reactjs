@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import { Form, Input, Select, Checkbox, Relevant, Debug } from 'informed';
+import React from "react";
+import { Form } from 'informed';
 import {Link} from "react-router-dom";
-import {Field, Loader, TextInput} from "../../../UI";
+import {Field, Loader, TextInput} from "../../../../UI";
 import {useSignInForm} from "./useSignInForm.js";
 
 
@@ -37,11 +37,7 @@ const SignInForm = () => {
                 </Field>
             </div>
 
-            <Link to="/" className="inline-block pt-1.5">Forgot your password?</Link>
-
-            <Loader
-                isActive={loading}
-                color={'#AE9040'} />
+            <Link to="/forgot" className="inline-block pt-1.5">Forgot your password?</Link>
 
             <div className="mt-5">
                 <button type="submit"

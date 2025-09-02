@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Form } from 'informed';
-import {Field, Loader, TextInput} from "../../../UI";
+import {Field, TextInput} from "../../../../UI";
 import {useSignUpForm} from "./useSignUpForm";
 
 
@@ -84,10 +84,6 @@ const SignUpForm = () => {
                         </Field>
                     </div>
                 </div>
-
-                <Loader
-                    isActive={loading}
-                    color={'#AE9040'}/>
 
                 <div className="mt-5">
                     <button type="submit"

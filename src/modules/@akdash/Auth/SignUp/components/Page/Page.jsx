@@ -18,10 +18,7 @@ const Page = () => {
                         <SignUpForm/>
                     </div>
                     <div className="pt-9">
-                        <p className="text-white font-sans-semiBold text-base lg:text-[21px] lg:leading-7  mb-2.5">
-                            Get started today and take the first step toward smarter maintenance, fewer surprises, and more money in your pocket.
-                        </p>
-                        <Link to="/">Create My Account</Link>
+                        <Link to="/">Sign In</Link>
                     </div>
                 </div>
             </div>

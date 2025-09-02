@@ -1,34 +1,33 @@
-import {useState} from "react";
-import {redirect, useNavigate} from "react-router-dom";
-import {usePVContext} from "../../../context/PVContext";
+import {useNavigate} from "react-router-dom";
+import {usePVContext} from "../../../../context/PVContext";
 
-
-export const useSignInForm = props => {
+export const useSignUpForm = props => {
+    const {setWasSubmitted} = props;
     const {signInWithToken, loading, setLoading} = usePVContext();
     const navigate = useNavigate();
 
 
     const handleSubmit = async ({ values, errors }) => {
+        setWasSubmitted(true);
 
-        const loginUrl = 'http://localhost:3001/login';
+        const url = 'http://localhost:3001/signup';
 
         if (errors && Object.keys(errors).length) return;
 
-        const payload = {
-            email: values.email?.trim() || "",
-            password: values.password || ""
-        };
 
-        if (!payload.email || !payload.password) {
-            console.warn("Email and password are required");
-            return;
-        }
+        const payload = {
+            firstname: values.firstname?.trim() || "",
+            lastname: values.lastname || "",
+            email: values.email || "",
+            name: values.name || "",
+            password: values.password || "",
+        };
 
         try {
             setLoading(true)
 
-            // login
-            const response = await fetch(loginUrl, {
+            // signup
+            const response = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -39,7 +38,7 @@ export const useSignInForm = props => {
             const data = await response.json();
 
             if (!response.ok || data.status !== "success") {
-                console.error("Login failed:", data.message || "Unknown error");
+                console.error("Sing Up failed:", data.message || "Unknown error");
                 return;
             }
 
@@ -47,7 +46,7 @@ export const useSignInForm = props => {
             await signInWithToken(data.token);
 
             // redirect
-            navigate("/dashboard", { replace: true });
+            navigate("/welcome", { replace: true });
 
         } catch (error) {
             console.error('Error while submitting:', error);

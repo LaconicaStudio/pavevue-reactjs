@@ -10,7 +10,7 @@ export const usePVContext = () => useContext(PVContext);
 export const PVContextProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const isLoggedIn = !!user; // похідний стан
+    const isLoggedIn = !!user || localStorage.getItem(TOKEN_KEY);
 
     const getToken = () => localStorage.getItem(TOKEN_KEY) || "";
     const saveToken = (t) => localStorage.setItem(TOKEN_KEY, t);

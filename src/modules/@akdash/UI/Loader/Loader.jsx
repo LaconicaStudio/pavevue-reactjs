@@ -1,14 +1,15 @@
 import React from 'react';
 import {BeatLoader} from "react-spinners";
+import {usePVContext} from "../../context/PVContext";
 
 const Loader = props => {
-    const {isActive, color} = props;
+    const {color} = props;
+    const {loading} = usePVContext();
 
-    return (isActive &&
+    return (loading &&
             <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-[#00000070]">
-                <BeatLoader color={color} loading={isActive} />
+                <BeatLoader color={color} loading={loading} />
             </div>
-
     )
 };
 

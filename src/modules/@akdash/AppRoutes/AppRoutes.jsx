@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import {SignIn} from "../SignIn";
 import {NotFound} from "../NotFound";
 import {Welcome} from "../Welcome";
 import ProtectedRoute from "./ProtectedRoute";
-import {SignUp} from "../SignUp";
+import {Forgot, SignIn, SignUp} from "../Auth";
+
 
 
 export default function AppRoutes() {
@@ -11,6 +11,7 @@ export default function AppRoutes() {
         <Routes>
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp/> } />
+            <Route path="/forgot" element={<Forgot/> } />
 
             <Route path="/welcome" element={
                 <ProtectedRoute>

@@ -1,34 +1,34 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {usePVContext} from "../../../context/PVContext";
+import {redirect, useNavigate} from "react-router-dom";
+import {usePVContext} from "../../../../context/PVContext";
 
-export const useSignUpForm = props => {
-    const {setWasSubmitted} = props;
+
+export const useSignInForm = props => {
     const {signInWithToken, loading, setLoading} = usePVContext();
     const navigate = useNavigate();
 
 
     const handleSubmit = async ({ values, errors }) => {
-        setWasSubmitted(true);
 
-        const url = 'http://localhost:3001/signup';
+        const loginUrl = 'http://localhost:3001/login';
 
         if (errors && Object.keys(errors).length) return;
 
-
         const payload = {
-            firstname: values.firstname?.trim() || "",
-            lastname: values.lastname || "",
-            email: values.email || "",
-            name: values.name || "",
-            password: values.password || "",
+            email: values.email?.trim() || "",
+            password: values.password || ""
         };
+
+        if (!payload.email || !payload.password) {
+            console.warn("Email and password are required");
+            return;
+        }
 
         try {
             setLoading(true)
 
-            // signup
-            const response = await fetch(url, {
+            // login
+            const response = await fetch(loginUrl, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const useSignUpForm = props => {
             await signInWithToken(data.token);
 
             // redirect
-            navigate("/welcome", { replace: true });
+            navigate("/dashboard", { replace: true });
 
         } catch (error) {
             console.error('Error while submitting:', error);

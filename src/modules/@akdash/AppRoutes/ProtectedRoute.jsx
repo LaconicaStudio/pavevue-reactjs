@@ -1,17 +1,10 @@
 import React from "react";
 import { usePVContext } from "../context/PVContext";
 import { Navigate } from "react-router-dom";
-import {Loader} from "../UI/index";
 
 
 export default function ProtectedRoute({ children }) {
-    const { isLoggedIn, loading} = usePVContext();
-
-    if (loading) {
-        return <Loader
-            isActive={loading}
-            color={'#AE9040'} />
-    }
+    const { isLoggedIn} = usePVContext();
 
     if (!isLoggedIn) {
         return <Navigate to="/signin" replace />;
