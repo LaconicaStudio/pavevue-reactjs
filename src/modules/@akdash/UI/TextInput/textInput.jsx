@@ -1,5 +1,6 @@
 import {useField, useFormState} from "informed";
 import {useState} from "react";
+import 'react-tabs/style/react-tabs.css';
 import classes from "./textInput.module.css";
 
 export default function TextInput({
