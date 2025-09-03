@@ -58,6 +58,7 @@
     --color-gold: #AD9041;
     --color-green: #41ad6b;
     --color-dark-gold: #837454;
+    --color-grey: #F7F7F7;
 
     --font-sans: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-bold: "Source Sans Pro Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -94,8 +95,43 @@
 a {
     @apply  text-gold font-sans-semiBold underline text-base lg:text-xl transition-all duration-300;
 }
+
+
+a.btn-link {
+    @apply  font-sans-semiBold text-base transition-all duration-300 no-underline text-center;
+    padding: 6px 16px 9px;
+    border-radius: 15px;
+    min-width: 180px;
+    display: inline-block;
+}
+
+.btn-primary {
+    @apply  text-black bg-white hover:bg-gold hover:text-white;
+}
+
+.btn-secondary {
+    @apply  text-white bg-[#acacac] hover:bg-white hover:text-black;
+}
+
+
+a.btn-link:hover {
+
+}
+
 a:hover {
     @apply no-underline
+}
+
+.header-container {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 auto;
+    @media (width >= 96rem) {
+        max-width: 1820px;
+    }
 }
 
 /*h1 {*/

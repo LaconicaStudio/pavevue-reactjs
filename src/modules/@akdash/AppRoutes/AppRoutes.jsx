@@ -3,6 +3,7 @@ import {NotFound} from "../NotFound";
 import {Welcome} from "../Welcome";
 import ProtectedRoute from "./ProtectedRoute";
 import {Forgot, SignIn, SignUp} from "../Auth";
+import {Dashboard} from "../Dashboard";
 
 
 
@@ -16,6 +17,12 @@ export default function AppRoutes() {
             <Route path="/welcome" element={
                 <ProtectedRoute>
                     <Welcome />
+                </ProtectedRoute>
+            } />
+
+            <Route path="/dashboard" element={
+                <ProtectedRoute>
+                    <Dashboard />
                 </ProtectedRoute>
             } />
 

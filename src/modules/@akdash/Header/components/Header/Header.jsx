@@ -23,7 +23,8 @@ const Header = () => {
     };
 
     return (
-        <header className={`flex justify-between items-center mb-6 py-7 px-6 ${isLoggedIn ? "bg-black" : ""}`}>
+        <header className={`header-container flex justify-between items-center py-5 px-6 ${isLoggedIn ? "bg-black" : ""}`}>
+        {/*<header className={`flex justify-between items-center mb-6 py-7 px-6 ${isLoggedIn ? "bg-black" : ""}`}>*/}
             <div>
                 <img src="/images/logo.svg" alt="logo" width="180" height="41"/>
             </div>
