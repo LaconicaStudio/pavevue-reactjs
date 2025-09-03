@@ -18,12 +18,12 @@ export const useDashboardPage = props => {
     // ];
 
     const tabItems = [
-        { id: 1, name: "Property Overview", content: '123' },
-        { id: 2, name: "Aerial Assessment", content: '321' },
-        { id: 3, name: "Ground Assessment", content: '159' },
-        { id: 4, name: "Property Report", content: '951' },
-        { id: 5, name: "Find Contractor(s)", content:'753' },
-        { id: 6, name: "Project(s)", content: '357' },
+        { id: 1, name: "Property Overview", content: "Property Overview" },
+        { id: 2, name: "Aerial Assessment", content: "Aerial Assessment" },
+        { id: 3, name: "Ground Assessment", content: "Ground Assessment" },
+        { id: 4, name: "Property Report", content: "Property Report" },
+        { id: 5, name: "Find Contractor(s)", content:"Find Contractor(s)" },
+        { id: 6, name: "Project(s)", content: "Project(s)" },
     ];
 
 
