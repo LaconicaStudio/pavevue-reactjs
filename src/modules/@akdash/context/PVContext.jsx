@@ -1,7 +1,6 @@
 // src/context/PVContext.jsx
 import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 
-const TOKEN_KEY = "token";
 const API = "http://localhost:3001";
 
 const PVContext = createContext(null);
@@ -10,87 +9,84 @@ export const usePVContext = () => useContext(PVContext);
 export const PVContextProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const isLoggedIn = !!user || localStorage.getItem(TOKEN_KEY);
-
-    const getToken = () => localStorage.getItem(TOKEN_KEY) || "";
-    const saveToken = (t) => localStorage.setItem(TOKEN_KEY, t);
-    const clearToken = () => localStorage.removeItem(TOKEN_KEY);
 
     const fetchUser = async () => {
-        const token = getToken();
-        if (!token) return null;
+        try {
+            const res = await fetch(`${API}/user`, { credentials: "include" });
 
-        const res = await fetch(`${API}/user`, {
-            headers: {Authorization: `Bearer ${token}`},
-        });
+            if (res.status === 401) return null;
 
-        if (!res.ok) throw new Error("Failed to fetch user");
-        return res.json();
-    };
-
-    const signInWithToken = async (token) => {
-        saveToken(token);
-        const user = await fetchUser();
-        setUser(user);
-    };
-
-    const refreshUser = async () => {
-        const user = await fetchUser();
-        setUser(user);
-        return user;
-    };
-
-    const signOut = () => {
-        clearToken();
-        setUser(null);
-    };
-
-    // get user data
-    useEffect(() => {
-        let cancelled = false;
-
-        const init = async () => {
-            const token = getToken();
-
-            if (!token) {
-                setLoading(false);
-                return;
+            if (!res.ok) {
+                const text = await res.text().catch(() => "");
+                throw new Error(`fetch /user failed: ${res.status} ${text}`);
             }
 
+            return await res.json();
+        } catch (err) {
+            console.debug("[PV] fetchUser error:", err?.message);
+            return null;
+        }
+    };
+
+  const signIn = async (email, password) => {
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ email, password }),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || "Login failed");
+    }
+
+    // get user
+    const user = await fetchUser();
+    setUser(user);
+    return user;
+  };
+
+
+  const refreshUser = async () => {
+    const user = await fetchUser();
+    setUser(user);
+    return user;
+  };
+
+  const signOut = async () => {
+    await fetch(`${API}/signup`, { method: "POST", credentials: "include" }).catch(() => {});
+    setUser(null);
+  };
+
+    useEffect(() => {
+        let alive = true;
+
+        (async () => {
             try {
                 const user = await fetchUser();
-
-                if (!cancelled) setUser(user);
-
+                if (alive) setUser(user);
             } catch (e) {
-                clearToken();
-
-                if (!cancelled) setUser(null);
+                if (alive) setUser(null);
             } finally {
-                if (!cancelled) setLoading(false);
+                if (alive) setLoading(false);
             }
-        };
+        })();
 
-        init();
-
-        return () => {
-            cancelled = true;
-        };
+        return () => { alive = false; };
     }, []);
 
-    const value = useMemo(
-        () => ({
-            user,
-            isLoggedIn,
-            loading,
-            setLoading,
-            signInWithToken,
-            refreshUser,
-            getToken,
-            signOut,
-        }),
-        [user, isLoggedIn, loading]
-    );
+
+    const isLoggedIn = !!user;
+
+  const value = useMemo(() => ({
+    user,
+    isLoggedIn,
+    loading,
+    setLoading,
+    signIn,
+    refreshUser,
+    signOut,
+  }), [user, loading]);
 
     return <PVContext.Provider value={value}>{children}</PVContext.Provider>;
 };

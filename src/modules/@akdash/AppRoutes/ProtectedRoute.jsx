@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 
 
 export default function ProtectedRoute({ children }) {
-    const { isLoggedIn} = usePVContext();
+    const { isLoggedIn, loading} = usePVContext();
 
-    if (!isLoggedIn) {
+    if (!loading && !isLoggedIn) {
         return <Navigate to="/signin" replace />;
     }
 

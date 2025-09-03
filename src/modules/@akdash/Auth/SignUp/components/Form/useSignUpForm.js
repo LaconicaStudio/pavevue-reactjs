@@ -3,7 +3,7 @@ import {usePVContext} from "../../../../context/PVContext";
 
 export const useSignUpForm = props => {
     const {setWasSubmitted} = props;
-    const {signInWithToken, loading, setLoading} = usePVContext();
+    const {signIn, loading, setLoading} = usePVContext();
     const navigate = useNavigate();
 
 
@@ -43,7 +43,7 @@ export const useSignUpForm = props => {
             }
 
             // get user
-            await signInWithToken(data.token);
+            await signIn(payload.email, payload.password);
 
             // redirect
             navigate("/welcome", { replace: true });

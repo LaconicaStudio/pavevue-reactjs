@@ -4,7 +4,7 @@ import {usePVContext} from "../../../../context/PVContext";
 
 
 export const useSignInForm = props => {
-    const {signInWithToken, loading, setLoading} = usePVContext();
+    const {signIn, loading, setLoading} = usePVContext();
     const navigate = useNavigate();
 
 
@@ -27,34 +27,19 @@ export const useSignInForm = props => {
         try {
             setLoading(true)
 
-            // login
-            const response = await fetch(loginUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok || data.status !== "success") {
-                console.error("Login failed:", data.message || "Unknown error");
-                return;
-            }
-
             // get user
-            await signInWithToken(data.token);
+            await signIn(payload.email, payload.password);
 
             // redirect
             navigate("/dashboard", { replace: true });
 
         } catch (error) {
-            console.error('Error while submitting:', error);
+            console.error('Error while submitting:', error?.message);
         } finally {
             setLoading(false);
         }
     }
+
     return {
         loading,
         handleSubmit
