@@ -10,8 +10,6 @@ export const useSignInForm = props => {
 
     const handleSubmit = async ({ values, errors }) => {
 
-        const loginUrl = 'http://localhost:3001/login';
-
         if (errors && Object.keys(errors).length) return;
 
         const payload = {

@@ -3,14 +3,12 @@ import {usePVContext} from "../../../../context/PVContext";
 
 export const useSignUpForm = props => {
     const {setWasSubmitted} = props;
-    const {signIn, loading, setLoading} = usePVContext();
+    const {refreshUser, loading, setLoading} = usePVContext();
     const navigate = useNavigate();
 
 
     const handleSubmit = async ({ values, errors }) => {
         setWasSubmitted(true);
-
-        const url = 'http://localhost:3001/signup';
 
         if (errors && Object.keys(errors).length) return;
 
@@ -27,15 +25,16 @@ export const useSignUpForm = props => {
             setLoading(true)
 
             // signup
-            const response = await fetch(url, {
+            const response = await fetch('http://localhost:3001/signup', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(payload),
             });
 
-            const data = await response.json();
+            const data = await response.json().catch(() => ({}));
 
             if (!response.ok || data.status !== "success") {
                 console.error("Sing Up failed:", data.message || "Unknown error");
@@ -43,7 +42,7 @@ export const useSignUpForm = props => {
             }
 
             // get user
-            await signIn(payload.email, payload.password);
+            await refreshUser?.();
 
             // redirect
             navigate("/welcome", { replace: true });
