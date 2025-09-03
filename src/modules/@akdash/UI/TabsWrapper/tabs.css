@@ -1,0 +1,54 @@
+.react-tabs__tab-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.react-tabs__tab {
+    background: #C7C7C7;
+    color: #fff;
+    text-align: center;
+    font-family: Source Sans Pro Bold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 6px;
+    border-radius: 15px !important;
+    margin-bottom: 8px;
+}
+.react-tabs__tab.react-tabs__tab--selected {
+    background: #000;
+    color: #fff;
+}
+
+.react-tabs__tab-panel {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 33px 28px;
+}
+
+
+
+@media (min-width: 1024px) {
+
+    /*.react-tabs__tab-list {*/
+    /*    display: grid;*/
+    /*    gap: 16px;*/
+    /*    grid-template-columns: repeat(auto-fit, minmax(0, 260px));*/
+    /*    justify-content: start; !* або center / space-between, як тобі треба розкидати лишній простір *!*/
+    /*}*/
+
+
+    .react-tabs__tab-list {
+        flex-direction: row;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        margin-bottom: 0 !important;
+        border-bottom:none !important;
+    }
+
+    .react-tabs__tab {
+        width: 100%;
+        max-width: 260px;
+        border-radius: 15px 15px 0 0 !important;
+        margin-bottom: 0;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}

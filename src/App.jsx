@@ -1,6 +1,7 @@
 import {AppRoutes} from "./modules/@akdash/AppRoutes";
 import {Header} from "./modules/@akdash/Header";
 import {PVContextProvider} from "./modules/@akdash/context/PVContext";
+import {Loader} from "./modules/@akdash/UI";
 
 function App() {
 
@@ -15,7 +16,7 @@ function App() {
                 <div className="main-page flex-1 flex">
                     <AppRoutes />
                 </div>
-
+                <Loader color={'#AE9040'} />
             </div>
         </PVContextProvider>
     </>

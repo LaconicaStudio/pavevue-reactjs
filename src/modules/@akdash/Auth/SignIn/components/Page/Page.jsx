@@ -24,7 +24,7 @@ const Page = () => {
                         <p className="text-white font-sans-semiBold text-base lg:text-[21px] lg:leading-7  mb-2.5">
                             Get started today and take the first step toward smarter maintenance, fewer surprises, and more money in your pocket.
                         </p>
-                        <Link to="/">Create My Account</Link>
+                        <Link to="/signup">Create My Account</Link>
                     </div>
                 </div>
             </div>

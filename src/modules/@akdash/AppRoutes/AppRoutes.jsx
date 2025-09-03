@@ -1,20 +1,36 @@
 import { Routes, Route } from "react-router-dom";
-import {SignIn} from "../SignIn";
-// import {Home} from "../Home";
 import {NotFound} from "../NotFound";
 import {Welcome} from "../Welcome";
-import {SignUp} from "../SignUp";
+import ProtectedRoute from "./ProtectedRoute";
+import {Forgot, SignIn, SignUp} from "../Auth";
+import {Dashboard} from "../Dashboard";
 
 
 
 export default function AppRoutes() {
     return (
         <Routes>
-            {/*<Route path="/" element={<Home />} />*/}
-            <Route path="/welcome" element={<Welcome />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="/signup" element={<SignUp/> } />
+            <Route path="/forgot" element={<Forgot/> } />
+
+            <Route path="/welcome" element={
+                <ProtectedRoute>
+                    <Welcome />
+                </ProtectedRoute>
+            } />
+
+            <Route path="/dashboard" element={
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            } />
+
+            <Route path="*" element={
+                <ProtectedRoute>
+                    <NotFound />
+                </ProtectedRoute>
+            } />
         </Routes>
     );
 }

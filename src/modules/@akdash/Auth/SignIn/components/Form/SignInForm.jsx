@@ -1,18 +1,17 @@
-import React, {useState} from "react";
-import { Form, Input, Select, Checkbox, Relevant, Debug } from 'informed';
+import React from "react";
+import { Form } from 'informed';
 import {Link} from "react-router-dom";
-import {Field, Loader, TextInput} from "../../../UI";
+import {Field, Loader, TextInput} from "../../../../UI";
 import {useSignInForm} from "./useSignInForm.js";
 
 
 const SignInForm = () => {
     const {
         handleSubmit,
-        isLoading,
-        handleGetData
+        loading
     } = useSignInForm();
 
-return (
+    return (
     <div>
         <Form className=""
               onSubmit={handleSubmit}
@@ -38,24 +37,14 @@ return (
                 </Field>
             </div>
 
-            <Link to="/" className="inline-block pt-1.5">Forgot your password?</Link>
-
-            <Loader
-                isActive={isLoading}
-                color={'#AE9040'} />
+            <Link to="/forgot" className="inline-block pt-1.5">Forgot your password?</Link>
 
             <div className="mt-5">
                 <button type="submit"
                         className="bg-green text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"
-                        disabled={isLoading}
+                        disabled={loading}
                 >
                     <span>Sing In</span>
-                </button>
-
-                <button type="button" onClick={handleGetData}
-                        className="bg-green text-2xl font-sans-bold text-white py-4 px-[55px] rounded-2xl hover:bg-dark-gold transition-all duration-300"
-                >
-                    <span>Test</span>
                 </button>
             </div>
         </Form>
