@@ -1,0 +1,63 @@
+.input,
+.input_error {
+    appearance: none;
+    background: #000000;
+    height: 65px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 20px 25px;
+    box-sizing: border-box;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid #AD9041;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.input:focus-visible,
+.input_error:focus-visible {
+    outline: none;
+}
+
+.input_error {
+    border: 1px solid #CB0203;
+}
+
+.input_error + small {
+    position: absolute;
+    right: 11px;
+    bottom: 10px;
+    color: #CB0203;
+}
+
+input::placeholder {
+    color: #F7F7F7;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #F7F7F7;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+    color: #F7F7F7;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+    color: #F7F7F7;
+}
+input:-moz-placeholder { /* Firefox 18- */
+    color: #F7F7F7;
+}
+
+input{
+
+    -webkit-box-shadow: inset 0 0 0 50px transparent;
+    -webkit-text-fill-color: #F7F7F7;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #000 inset !important;
+    -webkit-text-fill-color: #F7F7F7 !important;
+    border: 1px solid #AD9041;
+}

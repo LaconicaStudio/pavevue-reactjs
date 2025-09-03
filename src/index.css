@@ -36,22 +36,35 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Source Sans Pro ExtraLight';
+    src: url('/fonts/SourceSansPro-ExtraLight.woff2') format('woff2'),
+    url('/fonts/SourceSansPro-ExtraLight.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Sans Pro Light';
+    src: url('/fonts/SourceSansPro-Light.woff2') format('woff2'),
+    url('/fonts/SourceSansPro-Light.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 @theme {
     --color-gold: #AD9041;
-
-
-    --color-brand-light: #7dd3fc;
-    --color-brand-dark: #0369a1;
-
-    --color-custom-gray: #1a1a1a;
-    --color-accent: #ff5733;
-
+    --color-green: #41ad6b;
+    --color-dark-gold: #837454;
 
     --font-sans: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-bold: "Source Sans Pro Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-semiBold: "Source Sans Pro SemiBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-sans-italic: "Source Sans Pro Italic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-sans-extra-light: "Source Sans Pro ExtraLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-sans-light: "Source Sans Pro Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
@@ -79,7 +92,7 @@
 }
 
 a {
-    @apply  text-gold font-sans-semiBold underline text-base lg:text-xl;
+    @apply  text-gold font-sans-semiBold underline text-base lg:text-xl transition-all duration-300;
 }
 a:hover {
     @apply no-underline
