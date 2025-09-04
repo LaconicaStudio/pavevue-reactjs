@@ -71,8 +71,12 @@ const Header = () => {
                         </div>
                         <ul className="flex flex-col gap-2 p-5">
                             <li>
-                                <Link to="/" onClick={closeMenu}
-                                      className="block rounded px-3 py-2 hover:bg-white/10">Home</Link>
+                                <Link to="/dashboard" onClick={closeMenu}
+                                      className="block rounded px-3 py-2 hover:bg-white/10">Dashboard</Link>
+                            </li>
+                            <li>
+                                <Link to="/my-properties" onClick={closeMenu}
+                                      className="block rounded px-3 py-2 hover:bg-white/10">My Properties</Link>
                             </li>
                             <li>
                                 <button

@@ -1,6 +1,7 @@
 // src/context/PVContext.jsx
 import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 
+// const API = '/api';
 //const API = "http://localhost:3001";
 const API = "https://pavevue.loc/api";
 
@@ -36,7 +37,7 @@ export const PVContextProvider = ({children}) => {
       credentials: "include",
       body: JSON.stringify({ email, password }),
     });
-    
+
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.message || "Login failed");

@@ -4,6 +4,7 @@ import {Welcome} from "../Welcome";
 import ProtectedRoute from "./ProtectedRoute";
 import {Forgot, SignIn, SignUp} from "../Auth";
 import {Dashboard} from "../Dashboard";
+import {MyProperties} from "../MyProperties";
 
 
 
@@ -23,6 +24,12 @@ export default function AppRoutes() {
             <Route path="/dashboard" element={
                 <ProtectedRoute>
                     <Dashboard />
+                </ProtectedRoute>
+            } />
+
+            <Route path="my-properties" element={
+                <ProtectedRoute>
+                    <MyProperties />
                 </ProtectedRoute>
             } />
 
