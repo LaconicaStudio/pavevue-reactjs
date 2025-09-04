@@ -51,7 +51,12 @@ return (
             <Autocomplete
                 apiKey={import.meta.env.VITE_GMAPS_KEY}
                 onPlaceSelected={(place) => {
-                    setAddress(place);
+                    setAddress(place)
+                }}
+
+                options={{
+                    types: ["address"],
+                    fields: ["formatted_address", "address_components", "geometry"],
                 }}
                 className="w-full rounded-[15px] border bg-black border border-gold h-[65px] text-xl px-[25px] focus-visiable:border-gold outline-none"
                 placeholder="Enter Address"
