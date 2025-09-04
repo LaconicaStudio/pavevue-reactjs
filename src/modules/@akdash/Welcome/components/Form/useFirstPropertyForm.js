@@ -6,7 +6,45 @@ import {usePVContext} from "../../../context/PVContext";
 export const useFirstPropertyForm = props => {
     const {loading, setLoading} = usePVContext();
     const navigate = useNavigate();
+    const [address, setAddress] = useState("");
 
+
+    const parseAddress = data => {
+        console.log(data);
+
+        var componentFormMap = {};
+        var result = {};
+        var streetNumber = '';
+
+        componentFormMap['street_number'] = 'street-number';
+        componentFormMap['route'] = 'street';
+        componentFormMap['locality'] = 'city';
+        componentFormMap['administrative_area_level_1'] = 'state';
+        componentFormMap['postal_code'] = 'postal_code';
+        componentFormMap['country'] = 'country';
+
+        for (var i = 0; i < data.address_components.length; i++) {
+            var addressType = data.address_components[i].types[0];
+            if (componentFormMap[addressType]) {
+                var addressFieldId = componentFormMap[addressType];
+                var field = (addressType == 'administrative_area_level_1' || addressType == 'postal_code') ? 'short_name' : 'long_name';
+                var val = data.address_components[i][field];
+
+                if (addressType != 'street_number') {
+                    result[componentFormMap[addressType]] = val;
+                } else {
+                    streetNumber = val
+                }
+
+            }
+        }
+        if (result['street'] && streetNumber != '') {
+            result['street'] = streetNumber +' ' + result['street'];
+        }
+
+
+        return result;
+    };
 
     const handleSubmit = async ({ values, errors }) => {
 
@@ -14,10 +52,12 @@ export const useFirstPropertyForm = props => {
 
         if (errors && Object.keys(errors).length) return;
 
+        const addressData = parseAddress(address);
+
         const payload = {
             propertyName: values.propertyName || "",
             propertyNumber: values.propertyNumber || "",
-            email: values.email || ""
+            address: addressData || ""
         };
 
         try {
@@ -48,6 +88,7 @@ export const useFirstPropertyForm = props => {
     }
     return {
         loading,
+        setAddress,
         handleSubmit
     }
 }
