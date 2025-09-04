@@ -134,6 +134,11 @@ a:hover {
     }
 }
 
+
+.pac-container .pac-logo {
+    opacity: 0.5;
+}
+
 /*h1 {*/
 /*  font-size: 3.2em;*/
 /*  line-height: 1.1;*/

@@ -19,7 +19,9 @@ class LocationSearchInput extends React.Component {
   };
 
   parseAddress = data => {
-    var componentFormMap = {};
+      console.log(data);
+
+      var componentFormMap = {};
     var result = {};
     var streetNumber = '';
 
