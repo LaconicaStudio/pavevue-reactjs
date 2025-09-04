@@ -97,7 +97,7 @@ a {
     @apply  text-gold font-sans-semiBold underline text-base lg:text-xl transition-all duration-300;
 }
 
-
+button.btn-link,
 a.btn-link {
     @apply  font-sans-semiBold text-base transition-all duration-300 no-underline text-center;
     padding: 6px 16px 9px;

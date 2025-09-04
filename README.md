@@ -18,4 +18,6 @@ node v20.19.0
 
 nvm use v20.19.0
 
+npm install
+
 npm run dev
