@@ -1,7 +1,8 @@
 // src/context/PVContext.jsx
 import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 
-const API = "http://localhost:3001";
+//const API = "http://localhost:3001";
+const API = "https://pavevue.loc/api";
 
 const PVContext = createContext(null);
 export const usePVContext = () => useContext(PVContext);
@@ -12,7 +13,7 @@ export const PVContextProvider = ({children}) => {
 
     const fetchUser = async () => {
         try {
-            const res = await fetch(`${API}/user`, { credentials: "include" });
+            const res = await fetch(`${API}/users/info`, { credentials: "include" });
 
             if (res.status === 401) return null;
 
@@ -20,6 +21,8 @@ export const PVContextProvider = ({children}) => {
                 const text = await res.text().catch(() => "");
                 throw new Error(`fetch /user failed: ${res.status} ${text}`);
             }
+data = await res.json();
+alert(JSON.stringify(data));
 
             return await res.json();
         } catch (err) {
@@ -29,12 +32,13 @@ export const PVContextProvider = ({children}) => {
     };
 
   const signIn = async (email, password) => {
-    const res = await fetch(`${API}/login`, {
+    const res = await fetch(`${API}/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify({ email, password }),
     });
+    
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.message || "Login failed");
