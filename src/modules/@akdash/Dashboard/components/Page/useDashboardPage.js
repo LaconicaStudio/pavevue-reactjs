@@ -1,12 +1,21 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
+import Overview from "../Overview";
 
 
 export const useDashboardPage = props => {
     const {} = usePVContext();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+
+    const property =
+        { id: 1,
+          name: "Property Overview",
+          number: "0000",
+          address: '1234 Street Name, City Name, State, 12345'
+        };
+
 
     // const tabItems = [
     //     { id: 1, name: "Property Overview", content: <Overview /> },
@@ -18,7 +27,7 @@ export const useDashboardPage = props => {
     // ];
 
     const tabItems = [
-        { id: 1, name: "Property Overview", content: "Property Overview" },
+        { id: 1, name: "Property Overview", component: Overview },
         { id: 2, name: "Aerial Assessment", content: "Aerial Assessment" },
         { id: 3, name: "Ground Assessment", content: "Ground Assessment" },
         { id: 4, name: "Property Report", content: "Property Report" },
@@ -29,6 +38,7 @@ export const useDashboardPage = props => {
 
 
     return {
+        property,
         tabItems
     }
 }
