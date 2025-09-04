@@ -8,7 +8,7 @@ const MapView = () => {
 
     // const {tabItems} = useMyProperties();
 
-
+    console.log('GMAPS_KEY', import.meta.env.VITE_GMAPS_KEY?.slice(-8));
     return (
         <div className="bg-grey w-full relative h-[600px] w-full  pb-7 px-6">
             <GoogleMapReact

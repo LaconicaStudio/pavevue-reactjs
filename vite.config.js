@@ -13,6 +13,14 @@ export default defineConfig({
     host: 'pavevue.loc',
     port: 3000,
     cors: true,
+      proxy: {
+          '/api': {
+              target: 'http://localhost:3001',
+              changeOrigin: true,
+              secure: false,
+              rewrite: p => p.replace(/^\/api/, ''), // /api/user -> /user
+          },
+      },
   },
 })
 

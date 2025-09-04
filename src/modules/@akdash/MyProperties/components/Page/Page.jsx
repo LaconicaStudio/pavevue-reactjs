@@ -1,10 +1,10 @@
 import React from "react";
 import {TabsWrapper, Tollbar} from "../../../UI";
 import {useMyProperties} from "./useMyProperties.js";
-
+import classes from "./my-properties.module.css";
+import "./my-properties.css";
 
 const Page = () => {
-
     const {tabItems} = useMyProperties();
 
     const tollbarTitle = (
@@ -29,7 +29,7 @@ const Page = () => {
         <div className="bg-grey w-full min-h-screen pb-7 px-6">
             <Tollbar title={tollbarTitle} buttons={tollbarButtons} />
 
-            <div className="container !mt-10">
+            <div className="container !mt-10 myProperties">
                 <TabsWrapper items={tabItems} />
             </div>
 

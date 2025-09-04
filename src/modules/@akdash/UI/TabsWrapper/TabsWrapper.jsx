@@ -3,6 +3,12 @@ import {Tabs, TabList, Tab, TabPanel} from "react-tabs";
 // import classes from "./tabs.module.css";
 import "./tabs.css";
 
+const slug = (s) =>
+    String(s)
+        .trim()
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]+/gu, "-")
+        .replace(/^-+|-+$/g, "");
 
 const TabsWrapper =  ({items, initialIndex = 0}) => {
     const [index, setIndex] = useState(initialIndex);
@@ -47,11 +53,14 @@ const TabsWrapper =  ({items, initialIndex = 0}) => {
                 ))}
             </TabList>
 
-            {normalized.map(({ id, getContent }) => (
-                <TabPanel key={id}>
-                    {getContent()}
-                </TabPanel>
-            ))}
+            {normalized.map(({ id, getContent, label }) => {
+                const s = slug(label);
+                return (
+                    <TabPanel key={id}  className={`react-tabs__tab-panel ${s}`}>
+                        {getContent()}
+                    </TabPanel>
+                )
+            })}
         </Tabs>
     )
 };

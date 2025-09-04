@@ -1,7 +1,7 @@
 // src/context/PVContext.jsx
 import React, {createContext, useContext, useEffect, useMemo, useRef, useState} from "react";
 
-const API = "http://localhost:3001";
+const API = '/api';
 
 const PVContext = createContext(null);
 export const usePVContext = () => useContext(PVContext);
