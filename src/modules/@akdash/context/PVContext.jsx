@@ -21,8 +21,6 @@ export const PVContextProvider = ({children}) => {
                 const text = await res.text().catch(() => "");
                 throw new Error(`fetch /user failed: ${res.status} ${text}`);
             }
-data = await res.json();
-alert(JSON.stringify(data));
 
             return await res.json();
         } catch (err) {
