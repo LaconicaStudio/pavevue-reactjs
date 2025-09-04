@@ -25,7 +25,7 @@ export const useSignUpForm = props => {
             setLoading(true)
 
             // signup
-            const response = await fetch('http://localhost:3001/signup', {
+            const response = await fetch('https://pavevue.loc/api/companies/signup', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
