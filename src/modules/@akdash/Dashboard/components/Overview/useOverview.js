@@ -7,7 +7,8 @@ export const useOverview = props => {
     const {} = usePVContext();
 
     const property = {
-        src: '',
+        src: '/images/property/property-image.png',
+        name: 'Property Name',
         contacts: {
             property : {
                 name: 'Property Name',
@@ -25,7 +26,18 @@ export const useOverview = props => {
                 tel: '1 555 555 1235',
                 email: 'sbakerson@company.com'
             }
-        }
+        },
+        ranking: {
+            status: 'failed',
+            number: 1,
+            message: 'FAILED! Action Required',
+            lastUpdate: 'February 12, 2025'
+        },
+        report: '',
+        activeProjects: 3,
+        openRFQs: 2,
+        nextInspectionDate: 'July 14, 2025',
+        teamMembers: 3
     }
 
 
