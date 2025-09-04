@@ -9,13 +9,12 @@ const {rows} = useTable();
             className={`relative inline-block ${className}`}
             style={{ width: size, height: size }}
         >
-            <img src={bottom} alt="" className="absolute inset-0 w-full h-full" />
+            <img src={bottom} alt="" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 md:w-full md:h-full" />
 
             <img
                 src={top}
                 alt=""
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[46%]"
-                style={{ width: topSize, height: topSize, objectFit: "contain" }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[46%] w-14 h-14 md:w-full md:h-full max-w-[75px] max-h-[75px] object-contain"
             />
         </div>
     );
@@ -27,7 +26,7 @@ const {rows} = useTable();
             const [top, bottom] = parts;
             return <StackedIcon top={top} bottom={bottom} size={size} />;
         }
-        return <img src={parts[0]} alt={alt} width={size} height={size} />;
+        return <img src={parts[0]} alt={alt} width={size} height={size} className="w-16 h-16 md:w-full md:h-full mx-auto max-w-[85px] max-h-[85px]" />;
     };
 
 return (
@@ -44,12 +43,12 @@ return (
             </thead>
             <tbody>
             {rows.map((r, i) => (
-                <tr key={i} className="border-t border-gold align-top">
-                    <td className="py-4 px-4">
+                <tr key={i} className="border-t border-light-grey last:border-b align-top">
+                    <td className="py-4 px-4  text-center align-middle">
                         <IconCell src={r.src} alt={r.condition} />
                     </td>
-                    <td className="py-4 px-4 text-center align-middle text-3xl md:text-5xl lg:text-[56px] font-semibold">{r.ranking}</td>
-                    <td className="py-4 px-4 text-center align-middle text-3xl md:text-5xl font-sans-bold">{r.condition}</td>
+                    <td className="py-4 px-4 text-center align-middle text-3xl md:text-4xl whitespace-nowrap lg:text-5xl 2xl:text-[56px] font-semibold">{r.ranking}</td>
+                    <td className="py-4 px-4 text-center align-middle text-3xl md:text-4xl lg:text-5xl font-sans-bold">{r.condition}</td>
                     <td className="py-4 px-4 text-center align-middle text-xl">
                         <div className="max-w-[260px] mx-auto">
                             {r.appearance}

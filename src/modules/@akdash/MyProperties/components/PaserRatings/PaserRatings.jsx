@@ -13,7 +13,7 @@ const PaserRatings = () => {
             <div className="p-[26px] border-b border-gold text-dark-gold font-sans-bold text-2xl">
                 <p>How PASER Ratings Work</p>
             </div>
-            <div className="w-full max-w-[1532px] mx-auto px-[26px] mt-16">
+            <div className="w-full max-w-[1532px] mx-auto px-[26px] mt-16 pb-24">
                 <div className="max-w-[990px] mb-[78px] md:pl-7">
                     <h2 className="text-[44px] leading-[52px] font-sans-bold mb-4">
                         Evaluate your asphalt easily with the PASER Scale
