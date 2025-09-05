@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
 import Overview from "../Overview";
-import Aerial from "../Aerial";
+// import Aerial from "../Aerial";
 import Reports from "../Reports";
 
 
