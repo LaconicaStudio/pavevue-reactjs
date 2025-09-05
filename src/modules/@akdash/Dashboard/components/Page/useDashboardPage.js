@@ -2,6 +2,8 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
 import Overview from "../Overview";
+import Aerial from "../Aerial";
+import Reports from "../Reports";
 
 
 export const useDashboardPage = props => {
@@ -28,9 +30,10 @@ export const useDashboardPage = props => {
 
     const tabItems = [
         { id: 1, name: "Property Overview", component: Overview },
-        { id: 2, name: "Aerial Assessment", content: "Aerial Assessment" },
+        { id: 2, name: "Aerial Assessment", component: Aerial },
+        // { id: 2, name: "Aerial Assessment", content: "Aerial Assessment" },
         { id: 3, name: "Ground Assessment", content: "Ground Assessment" },
-        { id: 4, name: "Property Report", content: "Property Report" },
+        { id: 4, name: "Property Report", component: Reports},
         { id: 5, name: "Find Contractor(s)", content:"Find Contractor(s)" },
         { id: 6, name: "Project(s)", content: "Project(s)" },
     ];
