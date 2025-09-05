@@ -14,7 +14,7 @@ export const useReports = props => {
                 createDate: 'January 1, 2025',
                 shortDescription:
                     'Agnataqu aessequiant volendi ssequi re corerum dit escilig enimpelias restrumquis es sumqui beat aspidun tiistiis eveniet, fugia enit dolorem quaecaest offictur sam aceatempores.',
-            pdfSrc:''
+                pdfSrc:'/pdf/pdf-1.pdf'
             },
             {
                 id: '002',
@@ -22,7 +22,7 @@ export const useReports = props => {
                 createDate: 'January 1, 2025',
                 shortDescription:
                     'Agnataqu aessequiant volendi ssequi re corerum dit escilig enimpelias restrumquis es sumqui beat aspidun tiistiis eveniet, fugia enit dolorem quaecaest offictur sam aceatempores.',
-                pdfSrc:''
+                pdfSrc:'/pdf/pdf-2.pdf'
             },
             {
                 id: '003',
@@ -30,7 +30,7 @@ export const useReports = props => {
                 createDate: 'January 1, 2025',
                 shortDescription:
                     'Agnataqu aessequiant volendi ssequi re corerum dit escilig enimpelias restrumquis es sumqui beat aspidun tiistiis eveniet, fugia enit dolorem quaecaest offictur sam aceatempores.',
-                pdfSrc:''
+                pdfSrc:'/pdf/pdf-3.pdf'
             },
         ],
     };

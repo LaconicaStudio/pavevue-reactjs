@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 import {useReports} from "./useReports.js";
 import ReportItem from "./ReportItem";
+import PdfViewer from "./PdfViewer/index.js";
 
 
 
@@ -10,7 +11,7 @@ const Reports = () => {
     const {reportList} = useReports();
     const [activeId, setActiveId] = useState(reportList.items[0]?.id ?? null);
     const active = reportList.items.find(i => i.id === activeId) || null;
-    console.log(activeId);
+    console.log(active);
     return (
         <div className="w-full">
             <div className="grid grid-cols-1 lg:[grid-template-columns:35.5%_64.5%]">
@@ -36,7 +37,9 @@ const Reports = () => {
 
                     </ul>
                 </div>
-                <div></div>
+                <div>
+                    <PdfViewer url={active?.pdfSrc} />
+                </div>
             </div>
         </div>
     )
