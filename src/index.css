@@ -93,6 +93,10 @@
     min-height: 100vh;
 }
 
+.main-page {
+    min-height: calc(100vh - 100px);
+}
+
 a {
     @apply  text-gold font-sans-semiBold underline text-base lg:text-xl transition-all duration-300;
 }
@@ -111,7 +115,7 @@ a.btn-link {
 }
 
 .btn-secondary {
-    @apply  text-white bg-[#acacac] hover:bg-white hover:text-black;
+    @apply  text-white bg-[#acacac] hover:bg-[#626262];
 }
 
 

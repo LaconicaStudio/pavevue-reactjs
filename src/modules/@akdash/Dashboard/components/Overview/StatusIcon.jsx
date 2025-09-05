@@ -59,7 +59,7 @@ export function StatusIcon({status, size = 85, top = "/images/circles/center.svg
                 alt={`${status} status`}
                 width={size}
                 height={size}
-                className={`block mx-auto ${className}`}
+                className={`block ${className}`}
                 style={{ width: size, height: size }}
             />
         );

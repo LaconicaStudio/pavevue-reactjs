@@ -33,7 +33,9 @@ export const useOverview = props => {
             message: 'FAILED! Action Required',
             lastUpdate: 'February 12, 2025'
         },
-        report: '',
+        report: {
+            created: 'August 14, 2024'
+        },
         activeProjects: 3,
         openRFQs: 2,
         nextInspectionDate: 'July 14, 2025',

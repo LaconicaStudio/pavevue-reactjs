@@ -8,12 +8,12 @@ function App() {
   return (
     <>
         <PVContextProvider>
-            <div className="w-full min-h-screen flex flex-col">
+            <div className="w-full  flex flex-col">
                 <div>
                     <Header/>
                 </div>
 
-                <div className="main-page flex-1 flex">
+                <div className="main-page flex">
                     <AppRoutes />
                 </div>
                 <Loader color={'#AE9040'} />
