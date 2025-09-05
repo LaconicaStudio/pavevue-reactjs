@@ -5,12 +5,14 @@ import {useDashboardPage} from "./useDashboardPage";
 
 const Page = () => {
 
-    const {tabItems} = useDashboardPage();
+    const {tabItems, property} = useDashboardPage();
 
     const tollbarTitle = (
         <>
             <h1 className="text-2xl font-sans-semiBold lg:text-[44px] lg:leading-[54px] pr-4">Property Dashboard:</h1>
-            <div className="text-lg">Property Name | 0000 | 1234 Street Name, City Name, State, 12345</div>
+            <div className="text-lg">
+                {property.name} | {property.number} | {property.address}
+            </div>
         </>
     );
 
@@ -29,7 +31,7 @@ const Page = () => {
     )
 
     return (
-        <div className="bg-grey w-full min-h-screen pb-7 px-6">
+        <div className="bg-grey w-full pb-7 px-6">
             <Tollbar title={tollbarTitle} buttons = {tollbarButtons} />
             <div className="container !mt-10">
                 <TabsWrapper items={tabItems} />
