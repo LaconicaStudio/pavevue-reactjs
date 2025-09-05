@@ -48,7 +48,7 @@ export const useFirstPropertyForm = props => {
 
     const handleSubmit = async ({ values, errors }) => {
 
-        const url = 'http://localhost:3001/property';
+        const url = 'https://pavevue.loc/api/properties/add';
 
         if (errors && Object.keys(errors).length) return;
 
@@ -67,11 +67,12 @@ export const useFirstPropertyForm = props => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
+                credentials: "include",
                 body: JSON.stringify(payload),
             });
 
             const data = await response.json();
-
+            
             if (!response.ok || data.status !== "success") {
                 console.error("Failed:", data.message || "Unknown error");
                 return;
