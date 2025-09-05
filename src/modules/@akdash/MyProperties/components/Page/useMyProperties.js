@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {usePVContext} from "../../../context/PVContext";
 import MapView from "../MapView";
 import PaserRatings from "../PaserRatings";
+import List from "../List";
 
 
 export const useMyProperties = props => {
@@ -13,6 +14,7 @@ export const useMyProperties = props => {
     const tabItems = [
         { id: 1, name: "Map View", component: MapView  },
         { id: 2, name: "Understanding PASER ratings", component: PaserRatings  },
+        { id: 3, name: "List", component: List  },
     ];
 
 
